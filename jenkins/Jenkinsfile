@@ -1,0 +1,18 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Pull Code') {
+      steps {
+        git 'https://github.com/mbiswas22/cloud-lab-project.git'
+      }
+    }
+
+    stage('Deploy Flask App') {
+      steps {
+        sh 'scp -i key.pem app/app.py ec2-user@<public-ip>:/home/ec2-user/app.py'
+        sh 'ssh -i key.pem ec2-user@<public-ip> "sudo python3 /home/ec2-user/app.py &"'
+      }
+    }
+  }
+}

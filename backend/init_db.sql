@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS book (
+  bookid INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    author VARCHAR(100),
+    price DECIMAL(6,2)
+);

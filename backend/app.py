@@ -23,3 +23,34 @@ def add_book():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+
+
+# from flask import Flask, request, jsonify
+# import mysql.connector
+
+# app = Flask(__name__)
+
+# db = mysql.connector.connect(
+#     host="10.0.2.XXX",  # Replace with private IP of DB
+#     user="root",
+#     password="yourpassword",
+#     database="bookdb"
+# )
+
+# @app.route('/books')
+# def get_books():
+#     cursor = db.cursor(dictionary=True)
+#     cursor.execute("SELECT * FROM book")
+#     return jsonify(cursor.fetchall())
+
+# @app.route('/add_book', methods=['POST'])
+# def add_book():
+#     data = request.json
+#     cursor = db.cursor()
+#     cursor.execute("INSERT INTO book (name, author, price) VALUES (%s, %s, %s)", (data["name"], data["author"], data["price"]))
+#     db.commit()
+#     return jsonify({"message": "Book added"})
+
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=80)
+

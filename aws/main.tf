@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.region
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
@@ -14,8 +18,11 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2
-  instance_type = "t2.micro"
+  ami = var.ami
+  instance_type = var.instance_type
+  tags = {
+    Name = "Terraform-EC2"
+    }
   subnet_id     = aws_subnet.public.id
   key_name      = var.key_pair_name
   security_groups = [aws_security_group.web_sg.id]
